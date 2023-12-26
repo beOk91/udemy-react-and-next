@@ -1,7 +1,9 @@
 import TodoItem from "./TodoItem";
 import "./TodoList.css";
-import { useMemo } from "react";
-export default function TodoList({ todos, onUpdate, onDelete }) {
+import { useContext, useMemo } from "react";
+import { TodoStateContext } from "../TodoContext";
+export default function TodoList() {
+  const { todos } = useContext(TodoStateContext);
   const { totalCount, doneCount, notDoneCount } = useMemo(() => {
     console.log("todo 분석함수 호출");
     const totalCount = todos.length;
@@ -23,12 +25,7 @@ export default function TodoList({ todos, onUpdate, onDelete }) {
       <input placeholder="검색어를 입력하세요 " />
       <div className="todos_wrapper">
         {todos.map((todo) => (
-          <TodoItem
-            key={todo.id}
-            {...todo}
-            onUpdate={onUpdate}
-            onDelete={onDelete}
-          />
+          <TodoItem key={todo.id} {...todo} />
         ))}
       </div>
     </div>

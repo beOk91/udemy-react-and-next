@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import "./TodoEditor.css";
-export default function TodoEditor({ onCreate }) {
+import { TodoDispatchContext } from "../TodoContext";
+export default function TodoEditor() {
+  const { onCreate } = useContext(TodoDispatchContext);
   const [todo, setTodo] = useState("");
   const onClickCreate = () => {
     onCreate(todo);

@@ -3,7 +3,8 @@ import "./App.css";
 import Header from "./components/Header";
 import TodoEditor from "./components/TodoEditor";
 import TodoList from "./components/TodoList";
-
+import { TodoStateContext, TodoDispatchContext } from "./TodoContext";
+import { useMemo } from "react";
 const mockData = [
   {
     id: 1,
@@ -52,11 +53,27 @@ function App() {
     console.log(targetId);
     setTodos(todos.filter((todo) => todo.id !== targetId));
   }, []);
+
+  const memoisedDispatch = useMemo(() => {
+    return {
+      onCreate,
+      onUpdate,
+      onDelete,
+    };
+  });
   return (
     <div className="App">
       <Header />
-      <TodoEditor onCreate={onCreate} />
-      <TodoList todos={todos} onUpdate={onUpdate} onDelete={onDelete} />
+      <TodoStateContext.Provider
+        value={{
+          todos,
+        }}
+      >
+        <TodoDispatchContext.Provider value={memoisedDispatch}>
+          <TodoEditor />
+          <TodoList />
+        </TodoDispatchContext.Provider>
+      </TodoStateContext.Provider>
     </div>
   );
 }

@@ -1,7 +1,10 @@
 import "./TodoItem.css";
 import { memo } from "react";
-function TodoItem({ id, isDone, content, date, onUpdate, onDelete }) {
+import { useContext } from "react";
+import { TodoDispatchContext } from "../TodoContext";
+function TodoItem({ id, isDone, content, date }) {
   // const { id, isDone, content, date, onUpdate, onDelete } = { ...data };
+  const { onUpdate, onDelete } = useContext(TodoDispatchContext);
   const onChangeCheck = () => {
     onUpdate(id);
   };
