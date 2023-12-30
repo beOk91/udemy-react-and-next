@@ -1,27 +1,25 @@
+import { useRef, useState } from "react";
 import "./App.css";
-import TodoList from "./pages/TodoList";
 import Header from "./components/Header";
 import TodoEditor from "./components/TodoEditor";
-import { useRef, useState } from "react";
+import TodoList from "./pages/TodoList";
 const mockData = [
-  { id: 1, isDone: false, content: "React 공부하기", dat: "2023.07.10" },
-  { id: 2, isDone: false, content: "빨래널기", dat: "2023.07.10" },
-  { id: 3, isDone: false, content: "노래 연습하기", dat: "2023.07.10" },
+  { id: 1, content: "첫번째 글", myDate: "2023-12-30" },
+  { id: 2, content: "두번째 글", myDate: "2023-12-30" },
+  { id: 3, content: "ㅁㄴㅇㄹㅁㄴㅇㄹㄴㅇ", myDate: "2023-12-30" },
 ];
 function App() {
   const idRef = useRef(4);
-  const [todos, setTodos] = useState(mockData);
-  const onCreate = (content) => {
-    setTodos([
-      ...todos,
-      { id: idRef.current++, isDone: false, content, dat: "2023.12.27" },
-    ]);
+  const [data, setData] = useState(mockData);
+
+  const insertData = (content) => {
+    setData([{ id: idRef.current++, content, myDate: "2023-12-30" }, ...data]);
   };
   return (
     <>
       <Header />
-      <TodoEditor onCreate={onCreate} />
-      <TodoList todos={todos} />
+      <TodoEditor insertData={insertData} />
+      <TodoList data={data} />
     </>
   );
 }

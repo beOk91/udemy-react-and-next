@@ -1,18 +1,20 @@
 import { useState } from "react";
 
-export default function TodoEditor({ onCreate }) {
-  const [todo, setTodo] = useState();
+const TodoEditor = ({ insertData }) => {
+  const [content, setContent] = useState();
   const onClickButton = () => {
-    onCreate(todo);
+    console.log(content);
+    insertData(content);
   };
   return (
     <div>
       <input
         type="text"
-        placeholder="새로운 Todo..."
-        onChange={(e) => setTodo(e.target.value)}
+        value={content}
+        onChange={(e) => setContent(e.target.value)}
       />
-      <button onClick={onClickButton}>추가</button>
+      <button onClick={onClickButton}>등록</button>
     </div>
   );
-}
+};
+export default TodoEditor;

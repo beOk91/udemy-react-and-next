@@ -1,12 +1,11 @@
-import { useState } from "react";
 import TodoItem from "../components/TodoItem";
 
 const TodoList = (props) => {
-  const { todos } = { ...props };
+  console.log(props);
   return (
     <>
-      {todos.map((item) => (
-        <TodoItem key={item.id} todo={item} />
+      {props.data.map((item) => (
+        <TodoItem key={item.id} {...item} />
       ))}
     </>
   );

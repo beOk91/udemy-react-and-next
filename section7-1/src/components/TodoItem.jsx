@@ -1,10 +1,12 @@
-export default function TodoItem(props) {
-  const { id, isDone, content, dat } = props.todo;
+const TodoItem = (props) => {
+  const { id, content, myDate } = props;
+
   return (
     <div>
-      <input type="checkbox" checked={isDone} />
-      <div>{content}</div>
-      <div>{dat}</div>
+      {id}
+      {content}
+      {myDate}
     </div>
   );
-}
+};
+export default TodoItem;
