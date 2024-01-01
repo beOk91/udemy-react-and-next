@@ -3,6 +3,7 @@ import "./App.css";
 import Header from "./components/Header";
 import TodoEditor from "./components/TodoEditor";
 import TodoList from "./pages/TodoList";
+import ImagePreview from "./components/ImagePreview";
 const mockData = [
   { id: 1, content: "첫번째 글", myDate: "2023-12-30" },
   { id: 2, content: "두번째 글", myDate: "2023-12-30" },
@@ -17,9 +18,13 @@ function App() {
   };
   return (
     <>
-      <Header />
+      {/* <Header />
       <TodoEditor insertData={insertData} />
-      <TodoList data={data} />
+      <TodoList data={data} /> */}
+      <div>
+        <ImagePreview src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png" />
+        <ImagePreview src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png" />
+      </div>
     </>
   );
 }
